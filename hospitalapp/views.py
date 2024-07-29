@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
-from hospitalapp.models import appointment
+from hospitalapp.models import appointment,patient
+from hospitalapp.forms import AppointmentForm
 
 # Create your views here.
 def index(request):
@@ -40,6 +41,33 @@ def delete(request,id):
     appointment1.delete()
     return redirect("/show")
 
-def show2(request):
-    myappointments = appointment.objects.all()
-    return render(request,'show2.html')
+def Patient(request):
+    if request.method == 'POST':
+        thepatients= patient(
+            name = request.POST['name'],
+            email = request.POST['email'],
+            phone = request.POST['phone'],
+            date = request.POST['date'],
+            message = request.POST['message'],
+
+        )
+        thepatients.save()
+        return redirect("/patientdetails")
+    else:
+        return render(request, 'patientdetails.html')
+
+def pdetails(request):
+    thepatients = patient.objects.all()
+    return render(request,'patientdetails.html',{'patient':thepatients})
+def edit(request,id):
+    editappointment = appointment.objects.get(id=id)
+    return render(request,'edit.html',{'appointment':editappointment})
+
+def update(request,id):
+    updateinfo = appointment.objects.get(id=id)
+    form = AppointmentForm(request.POST, instance=updateinfo)
+    if form.is_valid():
+        form.save()
+        return redirect('/show')
+    else:
+        return render(request,'edit.html')

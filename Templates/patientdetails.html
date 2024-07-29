@@ -1,0 +1,42 @@
+{% extends 'inner-page.html'%}
+{% load static %}
+
+{% block body %}
+
+            <div class="section-title">
+          <h2>Enter Patient Details</h2>
+          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        </div>
+
+        <table class="table table-secondary container ">
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Age</th>
+        <th>Action</th>
+
+    </tr>
+
+        {% for x in patient %}
+            <tr>
+                <td>{{ x.name }}</td>
+                <td>{{ x.email }}</td>
+                <td>{{ x.age }}</td>
+
+
+            <td>
+                <a href="" class="btn btn-success">EDIT</a>
+                <a href="/delete/{{ x.id }}" class="btn btn-danger">DELETE</a>
+            </td>
+
+            </tr>
+
+
+        {% endfor %}
+
+
+
+
+    </table>
+
+{% endblock %}
