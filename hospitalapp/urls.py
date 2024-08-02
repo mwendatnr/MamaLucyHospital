@@ -16,4 +16,9 @@ urlpatterns = [
     path('patientdetails/', views.pdetails,name='patientdetails'),
     path('edit/<int:id>', views.edit),
     path('update/<int:id>', views.update),
+    path('pay/', views.pay, name='pay'),
+    path('stk/', views.stk, name='stk'),
+    path('token/', views.token, name='token'),
+    path('register/', views.Register, name='register'),
+    path('login/', views.Login, name='login')
 ]

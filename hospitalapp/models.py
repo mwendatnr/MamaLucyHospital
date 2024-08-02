@@ -21,3 +21,14 @@ class appointment(models.Model):
     def __str__(self):
         return self.name
 
+class method(models.Model):
+    fullname = models.CharField(max_length=50)
+    username = models.CharField(max_length=50)
+    password = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.fullname
+
+
+
+
